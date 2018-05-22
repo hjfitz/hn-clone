@@ -1,0 +1,23 @@
+/**
+ * Keep the server in it's own file.
+ * Allows us to bind websockets and other services to http server
+ */
+
+// main deps
+const http = require('http');
+require('local-env-var');
+const app = require('../app');
+
+// default to a given port
+const port = process.env.PORT || 5000;
+app.set('port', port);
+
+// create server object for socket + express
+const server = http.createServer(app);
+
+// start a http server
+server.listen(port);
+
+// inform us of the running server
+/* eslint-disable */
+server.on("listening", () => console.log(`Server running on port http://localhost:${port}`));
