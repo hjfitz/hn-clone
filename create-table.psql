@@ -1,0 +1,44 @@
+CREATE TABLE "post" (
+	"post_id" serial NOT NULL,
+	"post_title" VARCHAR(255) NOT NULL,
+	"post_text" VARCHAR(255) NOT NULL,
+	"user_id" integer NOT NULL,
+	CONSTRAINT post_pk PRIMARY KEY ("post_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "user" (
+	"user_id" serial NOT NULL,
+	"user_username" VARCHAR(255) NOT NULL UNIQUE,
+	"user_pass_hash" VARCHAR(255) NOT NULL,
+	"user_added" DATETIME NOT NULL,
+	CONSTRAINT user_pk PRIMARY KEY ("user_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "comment" (
+	"comment_id" serial NOT NULL,
+	"comment_text" VARCHAR(255) NOT NULL,
+	"comment_vote" integer NOT NULL,
+	"post_id" integer NOT NULL,
+	"user_id" integer NOT NULL,
+	CONSTRAINT comment_pk PRIMARY KEY ("comment_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+ALTER TABLE "post" ADD CONSTRAINT "post_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("user_id");
+
+
+ALTER TABLE "comment" ADD CONSTRAINT "comment_fk0" FOREIGN KEY ("comment_vote") REFERENCES "post"("post_id");
+ALTER TABLE "comment" ADD CONSTRAINT "comment_fk1" FOREIGN KEY ("post_id") REFERENCES "post"("post_id");
+ALTER TABLE "comment" ADD CONSTRAINT "comment_fk2" FOREIGN KEY ("user_id") REFERENCES "user"("user_id");
+
