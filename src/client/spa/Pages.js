@@ -5,3 +5,4 @@ export { default as Home } from './pages/home';
 export { default as Profile } from './pages/profile';
 export { default as Story } from './pages/story';
 export { default as Submit } from './pages/submit';
+export { default as Login } from './pages/login';

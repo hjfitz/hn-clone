@@ -4,6 +4,7 @@ import { Link } from 'preact-router/match';
 const links = [
   <li><Link activeClassName="active" href="/submit">Submit</Link></li>,
   <li><Link activeClassName="active" href="/">Home</Link></li>,
+  <li><Link activeClassName="active" href="/login">Login</Link></li>,
 ];
 
 export default props => (

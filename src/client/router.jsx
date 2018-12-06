@@ -3,9 +3,9 @@ import Router from 'preact-router';
 import 'materialize-css/sass/materialize.scss';
 
 
-import { Home, Profile, Story, Submit } from './spa/Pages';
+import { Home, Profile, Story, Submit, Login } from './spa/Pages';
 import Layout from './spa/layout';
-import './style.scss';
+import './root.scss';
 
 /**
  * Routes are far nicer in Preact
@@ -20,9 +20,10 @@ render(
     <Layout>
       <Router>
         <Home path="/" />
-        <Profile path="/profile/:user" />
-        <Story path="/story/:id" />
+        <Login path="/login" />
         <Submit path="/submit" />
+        <Story path="/story/:id" />
+        <Profile path="/profile/:user" />
       </Router>
     </Layout>
   ), document.body,

@@ -7,7 +7,7 @@ const compression = require('compression');
 const logger = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
-const api = require('./src/server/routes/index');
+const api = require('./src/server/routes');
 
 /**
  * constants
