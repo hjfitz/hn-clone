@@ -1,9 +1,6 @@
-import { h } from 'preact';
+import { h, Component } from 'preact';
 
 
-export default () => (
-  <h1>
-      Home
-  </h1>
-);
+class Home extends Component {
 
+}

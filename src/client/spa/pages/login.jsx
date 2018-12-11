@@ -28,17 +28,19 @@ class Login extends Component {
       const resp = await axios.post('/api/login', creds);
       const token = resp.data;
       console.log(token);
-      window.localStorage.setItem('token', token);
+      localStorage.setItem('token', JSON.stringify(token));
     } catch (err) {
       console.log(err);
     }
   }
 
   async signup() {
+    localStorage.removeItem('token');
     const { creds } = this;
     if (!creds) return;
     try {
-      const resp = await axios.post('/api/signup', creds);
+      const { data: token } = await axios.post('/api/signup', creds);
+      localStorage.setItem('token', JSON.stringify(token));
     } catch (err) {
       console.log(err);
     }

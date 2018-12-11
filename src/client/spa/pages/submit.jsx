@@ -3,15 +3,13 @@ import { route } from 'preact-router';
 import axios from 'axios';
 
 class Submit extends Component {
-  constructor(props) {
-    super(props);
-    this.submitStory = this.submitStory.bind(this);
-  }
-
-  submitStory() {
+  submit() {
     const { value: title } = this.title;
     const { value: url } = this.url;
-    axios.post('/api/story', { title, url }).then(() => route('/', true));
+    const token = JSON.parse(localStorage.getItem('token'));
+    if (!token) route('/login', true);
+    console.log('submitting');
+    axios.post('/api/story', { title, url }, { headers: { token } }).then(() => route('/', true));
   }
 
   render() {
@@ -28,7 +26,7 @@ class Submit extends Component {
               <label htmlFor="url">URL</label>
             </div>
             <div className="row">
-              <a className="waves-effect waves-light btn" href="#!" onClick={this.submitStory}>Submit</a>
+              <a className="waves-effect waves-light btn" href="#!" onClick={this.submit.bind(this)}>Submit</a>
             </div>
           </form>
         </div>
